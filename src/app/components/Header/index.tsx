@@ -22,7 +22,8 @@ export default function LayoutHeader() {
     showPassword,
     handleClickShowPassword,
     handleMouseDownPassword,
-    signinOrRegister
+    signinOrRegister,
+    handleSetSigninOrRegister
   } = useHeader()
   
   const style = {
@@ -55,7 +56,7 @@ export default function LayoutHeader() {
               {signinOrRegister == 'signin' ? (
                 
                 <div className='flex flex-col gap-2 mt-2'>
-                  <TextField fullWidth  id="standard-basic" label="Email" variant="standard" />
+                  <TextField fullWidth label="Email" variant="standard" />
                   <FormControl fullWidth variant="standard">
                     <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
                     <Input
@@ -77,10 +78,34 @@ export default function LayoutHeader() {
                   <div className='w-full mt-3'>
                     <Button variant="contained" fullWidth>Sign in</Button>
                   </div>
+                  <span className='mt-3'>
+                    Don't have an account? 
+                    <Button style={{textTransform: 'none'}} 
+                      variant="text" 
+                      onClick={() => handleSetSigninOrRegister('register')}
+                      >
+                        Register Now
+                    </Button>
+                  </span>
                 </div>
               ) : (
                 <div>
-                  register
+                  
+                  <div className='flex flex-col gap-2 mt-2'>
+                    <TextField fullWidth label="Email" variant="standard" />
+                    <div className='w-full mt-3'>
+                      <Button variant="contained" fullWidth>Continue</Button>
+                    </div>
+                    <span className='mt-3'>
+                      Already Registered?  
+                      <Button style={{textTransform: 'none'}} 
+                        variant="text" 
+                        onClick={() => handleSetSigninOrRegister('signin')}
+                        >
+                          Sign in
+                      </Button>
+                    </span>
+                  </div>
                 </div>
                 )
               }

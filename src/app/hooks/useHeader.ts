@@ -13,6 +13,9 @@ export function useHeader () {
     setOpen(true)
     setSigninOrRegister(action)
   };
+  const handleSetSigninOrRegister = (action:string) => {
+    setSigninOrRegister(action)
+  }
   const handleClose = () => setOpen(false);
   return {
     handleOpen,
@@ -21,6 +24,7 @@ export function useHeader () {
     showPassword,
     handleClickShowPassword,
     handleMouseDownPassword,
-    signinOrRegister
+    signinOrRegister,
+    handleSetSigninOrRegister
   }
 }
