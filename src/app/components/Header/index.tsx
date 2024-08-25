@@ -23,7 +23,11 @@ export default function LayoutHeader() {
     handleClickShowPassword,
     handleMouseDownPassword,
     signinOrRegister,
-    handleSetSigninOrRegister
+    handleSetSigninOrRegister,
+    handleEmailInput,
+    handlePasswordInput,
+    isLoading,
+    handleSignIn
   } = useHeader()
   
   const style = {
@@ -56,10 +60,11 @@ export default function LayoutHeader() {
               {signinOrRegister == 'signin' ? (
                 
                 <div className='flex flex-col gap-2 mt-2'>
-                  <TextField fullWidth label="Email" variant="standard" />
+                  <TextField onChange={(e) => handleEmailInput(e.target.value)} fullWidth label="Email" variant="standard" />
                   <FormControl fullWidth variant="standard">
                     <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
                     <Input
+                      onChange={(e) => handlePasswordInput(e.target.value)}
                       id="standard-adornment-password"
                       type={showPassword ? 'text' : 'password'}
                       endAdornment={
@@ -76,7 +81,9 @@ export default function LayoutHeader() {
                     />
                   </FormControl>
                   <div className='w-full mt-3'>
-                    <Button variant="contained" fullWidth>Sign in</Button>
+                    <Button onClick={(e) => handleSignIn(e)} disabled={isLoading} variant="contained" fullWidth>
+                      {isLoading ?<span>Signing In...</span> : 'Sign In'}
+                    </Button>
                   </div>
                   <span className='mt-3'>
                     Don't have an account? 
